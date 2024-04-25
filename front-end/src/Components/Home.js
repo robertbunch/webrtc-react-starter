@@ -25,6 +25,7 @@ const Home = ({callStatus,updateCallStatus,setLocalStream,
     //     const test = async()=>{
     //         const socket = socketConnection("test")
     //     }
+    //     //if this works, you will get pong in the console!
     //     test()
     // },[])
     
