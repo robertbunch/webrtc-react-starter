@@ -21,8 +21,7 @@ const CallerVideo = ({remoteStream, localStream,peerConnection,
 
     //set video tags
     useEffect(()=>{
-        remoteFeedEl.current.srcObject = remoteStream
-        localFeedEl.current.srcObject = localStream
+
     },[])
 
     //if we have tracks, disable the video message
