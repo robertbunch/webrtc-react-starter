@@ -22,12 +22,10 @@ const Home = ({callStatus,updateCallStatus,setLocalStream,
 
     //Test backend connection
     // useEffect(()=>{
-        // const test = async()=>{
-        //     const response = await fetch("https://localhost:5000");
-        //     const movies = await response.json();
-        //     console.log(movies)
-        // }
-        // test()
+    //     const test = async()=>{
+    //         const socket = socketConnection("test")
+    //     }
+    //     test()
     // },[])
     
     //Nothing happens until the user clicks join

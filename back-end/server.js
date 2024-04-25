@@ -1,6 +1,7 @@
 
 const fs = require('fs');
 const https = require('https')
+const http = require('http')
 const express = require('express');
 const app = express();
 const socketio = require('socket.io');
@@ -10,23 +11,26 @@ app.use(express.static(__dirname))
 //we generated them with mkcert
 // $ mkcert create-ca
 // $ mkcert create-cert
-const key = fs.readFileSync('cert.key');
-const cert = fs.readFileSync('cert.crt');
+// const key = fs.readFileSync('cert.key');
+// const cert = fs.readFileSync('cert.crt');
 
 //we changed our express setup so we can use https
 //pass the key and cert to createServer on https
-const expressServer = https.createServer({key, cert}, app);
+// const expressServer = https.createServer({key, cert}, app);
+
+const expressServer = http.createServer(app);
 //create our socket.io server... it will listen to our express port
 const io = socketio(expressServer,{
     cors: {
         origin: [
-            // "https://localhost:3000",
-            "https://192.168.1.44:3000",
+            "https://localhost:3000",
             // 'https://LOCAL-DEV-IP-HERE' //if using a phone or another computer
         ],
         methods: ["GET", "POST"]
     }
 });
+
+
 expressServer.listen(8181);
 
 //offers will contain {}
@@ -55,7 +59,12 @@ io.on('connection',(socket)=>{
         socketId: socket.id,
         userName
     })
-    console.log(connectedSockets)
+    // console.log(connectedSockets)
+
+    //test connectivity
+    socket.on('test',ack=>{
+        ack('pong')
+    })
 
     //a new client has joined. If there are any offers available,
     //emit them out
@@ -142,6 +151,7 @@ io.on('connection',(socket)=>{
         }
         // console.log(offers)
     })
+
     socket.on('disconnect',()=>{
         const offerToClear = offers.findIndex(o=>o.offererUserName === userName)
         offers.splice(offerToClear,1)
