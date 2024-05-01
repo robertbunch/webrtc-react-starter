@@ -5,7 +5,7 @@ import socketConnection from '../webrtcUtilities/socketConnection'
 import ActionButtons from './ActionButtons/ActionButtons'
 import VideoMessageBox from "./VideoMessageBox";
 
-const CallerVideo = ({remoteStream, localStream,peerConnection,
+const AnswerVideo = ({remoteStream, localStream,peerConnection,
     callStatus,updateCallStatus,offerData,userName})=>{
     const remoteFeedEl = useRef(null); //this is a React ref to a dom element, so we can interact with it the React way
     const localFeedEl = useRef(null); //this is a React ref to a dom element, so we can interact with it the React way
@@ -59,4 +59,4 @@ const CallerVideo = ({remoteStream, localStream,peerConnection,
     )
 }
 
-export default CallerVideo
+export default AnswerVideo
