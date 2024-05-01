@@ -10,10 +10,12 @@ const clientSocketListeners = (socket,typeOfCall,callStatus,
     })
 
     socket.on('receivedIceCandidateFromServer',iceC=>{
-        peerConnection.addIceCandidate(iceC);
-        console.log(iceC)
-        console.log("Added an iceCandidate to existing page presence")
-        // setShowCallInfo(false);
+        if(iceC){
+            peerConnection.addIceCandidate(iceC);
+            console.log(iceC)
+            console.log("Added an iceCandidate to existing page presence")
+            // setShowCallInfo(false);
+        }
     })
 }
 
